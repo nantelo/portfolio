@@ -1,0 +1,2042 @@
+/* ============ Base & Claymorphism Design System ============ */
+
+
+
+:root {
+
+  --bg-1: #f4f0ff;
+
+  --bg-2: #eaf6ff;
+
+  --bg-3: #fff1f6;
+
+
+
+  /* Clay surfaces */
+
+  --clay-bg: #f8f9ff;
+
+  --clay-bg-soft: #f6f1ff;
+
+  --clay-border: rgba(105, 116, 180, 0.16);
+
+
+
+  /* Signature clay shadow: outer drop + inset top light + inset bottom depth */
+
+  --clay-shadow:
+    12px 12px 28px rgba(111, 120, 163, 0.18),
+    -10px -10px 24px rgba(255, 255, 255, 0.92),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.85);
+
+  --clay-shadow-hover:
+    16px 16px 34px rgba(111, 120, 163, 0.22),
+    -12px -12px 28px rgba(255, 255, 255, 0.98),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+
+
+
+  --clay-radius: 28px;
+
+
+
+  --text: #242943;
+
+  --text-dim: rgba(36, 41, 67, 0.68);
+
+  --accent: #6d5dfc;
+
+  --accent-2: #5142db;
+
+  --accent-gradient: linear-gradient(135deg, #7567ff 0%, #45c8d8 100%);
+
+}
+
+
+
+* {
+
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+}
+
+
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+
+
+body {
+
+  font-family: "Inter", "Poppins", system-ui, sans-serif;
+
+  color: var(--text);
+
+  background: radial-gradient(circle at 12% 8%, #e7ddff 0, transparent 32%), radial-gradient(circle at 88% 24%, #d8f2ff 0, transparent 30%), linear-gradient(135deg, var(--bg-1), var(--bg-2) 55%, var(--bg-3));
+
+  background-attachment: fixed;
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+}
+
+
+
+/* ============ Animated gradient blobs behind the glass ============ */
+
+
+
+.bg-animation {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: -1;
+
+  overflow: hidden;
+
+}
+
+
+
+.blob {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  opacity: 0.45;
+
+  animation: float 12s ease-in-out infinite;
+
+}
+
+
+
+.blob-1 {
+
+  width: 420px;
+
+  height: 420px;
+
+  background: #d8c6ff;
+
+  top: -80px;
+
+  left: -80px;
+
+}
+
+
+
+.blob-2 {
+
+  width: 380px;
+
+  height: 380px;
+
+  background: #c3e3ff;
+
+  top: 45%;
+
+  right: -100px;
+
+  animation-delay: -6s;
+
+}
+
+
+
+.blob-3 {
+
+  width: 300px;
+
+  height: 300px;
+
+  background: #ffd3e4;
+
+  bottom: -60px;
+
+  left: 35%;
+
+  animation-delay: -12s;
+
+}
+
+
+
+@keyframes float {
+
+
+
+  0%,
+
+  100% {
+
+    transform: translate(0, 0) scale(1);
+
+  }
+
+
+
+  33% {
+
+    transform: translate(40px, -30px) scale(1.08);
+
+  }
+
+
+
+  66% {
+
+    transform: translate(-30px, 30px) scale(0.94);
+
+  }
+
+}
+
+
+
+/* ============ The glass card itself ============ */
+
+
+
+.glass-card {
+
+  background: var(--clay-bg);
+
+  border: 1px solid var(--clay-border);
+
+  border-radius: var(--clay-radius);
+
+  box-shadow: var(--clay-shadow);
+
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+
+}
+
+
+
+.glass-card:hover {
+
+  box-shadow: var(--clay-shadow-hover);
+
+  transform: translateY(-4px);
+
+}
+
+
+
+/* ============ Navbar ============ */
+
+
+
+.navbar {
+
+  position: sticky;
+
+  top: 16px;
+
+  z-index: 50;
+
+  margin: 16px auto 0;
+
+  max-width: 1100px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 14px 28px;
+
+  border-radius: 999px;
+
+}
+
+
+
+.navbar .logo {
+
+  font-weight: 800;
+
+  font-size: 1.25rem;
+
+  background: var(--accent-gradient);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+
+}
+
+
+
+.navbar ul {
+
+  display: flex;
+
+  gap: 26px;
+
+  list-style: none;
+
+}
+
+
+
+.navbar a {
+
+  color: var(--text-dim);
+
+  text-decoration: none;
+
+  font-weight: 500;
+
+  transition: color 0.25s;
+
+}
+
+
+
+.navbar a:hover {
+
+  color: var(--accent-2);
+
+  text-shadow: 0 8px 16px rgba(139, 92, 246, 0.35);
+
+}
+
+
+
+/* ============ Sections ============ */
+
+
+
+.section {
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 90px 24px 30px;
+
+}
+
+
+
+.section-title {
+
+  text-align: center;
+
+  font-size: 2.2rem;
+
+  font-weight: 800;
+
+  margin-bottom: 36px;
+
+  background: var(--accent-gradient);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+
+}
+
+
+
+/* ============ Hero ============ */
+
+
+
+.hero-card {
+
+  display: grid;
+
+  grid-template-columns: 320px 1fr;
+
+  gap: 40px;
+
+  padding: 44px;
+
+  align-items: center;
+
+}
+
+
+
+.image-box {
+
+  position: relative;
+
+  width: 260px;
+
+  height: 260px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  border: 6px solid #ffffff;
+
+  box-shadow: var(--clay-shadow);
+
+}
+
+
+
+.image-box img {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  opacity: 0;
+
+  transition: opacity 0.8s ease;
+
+  object-fit: cover;
+
+}
+
+
+
+.image-box img.active {
+
+  opacity: 1;
+
+}
+
+
+
+.hero-edu {
+
+  padding: 16px 20px;
+
+  font-size: 0.95rem;
+
+  color: var(--text-dim);
+
+  text-align: center;
+
+}
+
+
+
+.hero-right h3 {
+
+  color: var(--text-dim);
+
+  font-weight: 400;
+
+}
+
+
+
+.hero-right h1 {
+
+  font-size: 2.6rem;
+
+  font-weight: 800;
+
+  line-height: 1.2;
+
+}
+
+
+
+.auto_type {
+
+  min-height: 2.2rem;
+
+  font-size: 1.5rem;
+
+  font-weight: 600;
+
+  background: var(--accent-gradient);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+
+}
+
+
+
+.caret {
+
+  color: var(--accent-2);
+
+  animation: blink 1s step-end infinite;
+
+}
+
+
+
+@keyframes blink {
+
+  50% {
+
+    opacity: 0;
+
+  }
+
+}
+
+
+
+.hero-right>p {
+
+  margin: 18px 0 24px;
+
+  color: var(--text-dim);
+
+  max-width: 520px;
+
+}
+
+
+
+/* ============ Buttons ============ */
+
+
+
+.btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 12px 26px;
+
+  border-radius: 999px;
+
+  font-family: inherit;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  border: 1px solid transparent;
+
+  transition: transform 0.25s, box-shadow 0.25s;
+
+}
+
+
+
+.btn.primary {
+
+  background: var(--accent-gradient);
+
+  color: #fff;
+
+  box-shadow:
+
+    0 10px 20px rgba(139, 92, 246, 0.35),
+
+    inset 0 -6px 12px rgba(0, 0, 0, 0.15),
+
+    inset 0 6px 10px rgba(255, 255, 255, 0.35);
+
+}
+
+
+
+.btn.primary:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+
+    0 14px 28px rgba(139, 92, 246, 0.45),
+
+    inset 0 -6px 12px rgba(0, 0, 0, 0.15),
+
+    inset 0 6px 10px rgba(255, 255, 255, 0.4);
+
+}
+
+
+
+.btn.outline {
+
+  background: var(--clay-bg-soft);
+
+  border: 1px solid var(--clay-border);
+
+  color: var(--text);
+
+  box-shadow: var(--clay-shadow);
+
+}
+
+
+
+.btn.outline:hover {
+
+  transform: translateY(-2px);
+
+  background: #efe7ff;
+
+  box-shadow: var(--clay-shadow-hover);
+
+}
+
+
+
+.btn.small {
+
+  padding: 9px 20px;
+
+  font-size: 0.85rem;
+
+  margin-top: 8px;
+
+}
+
+
+
+/* ============ About & Social ============ */
+
+
+
+.about-card {
+
+  padding: 36px;
+
+  line-height: 1.75;
+
+  color: var(--text-dim);
+
+}
+
+
+
+.about-card strong {
+
+  color: var(--text);
+
+}
+
+
+
+.social {
+
+  display: flex;
+
+  gap: 16px;
+
+  margin-top: 24px;
+
+}
+
+
+
+.social a {
+
+  width: 46px;
+
+  height: 46px;
+
+  display: grid;
+
+  place-items: center;
+
+  font-size: 1.2rem;
+
+  color: var(--text);
+
+  background: var(--clay-bg);
+
+  border: 1px solid var(--clay-border);
+
+  border-radius: 50%;
+
+  box-shadow: var(--clay-shadow);
+
+  transition: transform 0.25s, background 0.25s, box-shadow 0.25s;
+
+}
+
+
+
+.social a:hover {
+
+  transform: translateY(-4px) scale(1.06);
+
+  background: var(--accent-gradient);
+
+  color: #fff;
+
+  box-shadow: 0 12px 24px rgba(139, 92, 246, 0.4);
+
+}
+
+
+
+/* ============ Skills ============ */
+
+
+
+.skills-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 22px;
+
+}
+
+
+
+.skill-card {
+
+  padding: 26px;
+
+}
+
+
+
+.skill-card h3 {
+
+  margin-bottom: 18px;
+
+  font-size: 1.1rem;
+
+}
+
+
+
+.skill {
+
+  margin-bottom: 14px;
+
+}
+
+
+
+.skill-head {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 0.88rem;
+
+  margin-bottom: 6px;
+
+  color: var(--text-dim);
+
+}
+
+
+
+.skill-bar {
+
+  height: 14px;
+
+  border-radius: 999px;
+
+  background: #ece4ff;
+
+  box-shadow:
+
+    inset 0 4px 8px rgba(139, 92, 246, 0.18),
+
+    inset 0 -2px 4px rgba(255, 255, 255, 0.9);
+
+  overflow: hidden;
+
+}
+
+
+
+.skill-fill {
+
+  height: 100%;
+
+  border-radius: 999px;
+
+  background: var(--accent-gradient);
+
+  box-shadow:
+
+    0 4px 8px rgba(139, 92, 246, 0.35),
+
+    inset 0 3px 5px rgba(255, 255, 255, 0.45);
+
+  animation: grow 1.2s ease-out;
+
+}
+
+
+
+@keyframes grow {
+
+  from {
+
+    width: 0;
+
+  }
+
+}
+
+
+
+/* ============ Projects ============ */
+
+
+
+.projects-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 22px;
+
+}
+
+
+
+.project-card {
+
+  padding: 28px;
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+
+.project-card h3 {
+
+  font-size: 1.15rem;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.project-card p {
+
+  color: var(--text-dim);
+
+  font-size: 0.92rem;
+
+  line-height: 1.6;
+
+  flex: 1;
+
+}
+
+
+
+.tags {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin: 16px 0;
+
+}
+
+
+
+.tag {
+
+  font-size: 0.75rem;
+
+  padding: 5px 12px;
+
+  border-radius: 999px;
+
+  background: #ede4ff;
+
+  border: 1px solid rgba(139, 92, 246, 0.25);
+
+  color: #6d28d9;
+
+  box-shadow:
+
+    inset 0 -3px 6px rgba(139, 92, 246, 0.12),
+
+    inset 0 3px 6px rgba(255, 255, 255, 0.9);
+
+}
+
+
+
+/* ============ Contact ============ */
+
+
+
+.contact-card {
+
+  max-width: 640px;
+
+  margin: 0 auto;
+
+  padding: 36px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+}
+
+
+
+.contact-card label {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  font-size: 0.9rem;
+
+  color: var(--text-dim);
+
+}
+
+
+
+.contact-card input,
+
+.contact-card textarea {
+
+  font-family: inherit;
+
+  font-size: 0.95rem;
+
+  color: var(--text);
+
+  padding: 13px 16px;
+
+  border-radius: 16px;
+
+  background: var(--clay-bg-soft);
+
+  border: 1px solid var(--clay-border);
+
+  box-shadow:
+
+    inset 0 5px 10px rgba(139, 92, 246, 0.10),
+
+    inset 0 -3px 6px rgba(255, 255, 255, 0.9);
+
+  outline: none;
+
+  resize: vertical;
+
+  transition: border 0.25s, box-shadow 0.25s;
+
+}
+
+
+
+.contact-card input:focus,
+
+.contact-card textarea:focus {
+
+  border-color: var(--accent);
+
+  box-shadow:
+
+    inset 0 5px 10px rgba(139, 92, 246, 0.14),
+
+    inset 0 -3px 6px rgba(255, 255, 255, 0.9),
+
+    0 0 0 3px rgba(139, 92, 246, 0.18);
+
+}
+
+
+
+.contact-card input::placeholder,
+
+.contact-card textarea::placeholder {
+
+  color: rgba(36, 41, 67, 0.42);
+
+}
+
+
+
+.status {
+
+  text-align: center;
+
+  font-size: 0.9rem;
+
+}
+
+
+
+.status.ok {
+
+  color: #059669;
+
+}
+
+
+
+.status.err {
+
+  color: #e11d48;
+
+}
+
+
+
+/* ============ Footer & misc ============ */
+
+
+
+.footer {
+
+  text-align: center;
+
+  padding: 34px 20px;
+
+  color: var(--text-dim);
+
+  font-size: 0.88rem;
+
+}
+
+
+
+.loading,
+
+.error {
+
+  text-align: center;
+
+  padding: 30px;
+
+  color: var(--text-dim);
+
+}
+
+
+
+.error {
+
+  color: #e11d48;
+
+}
+
+
+
+/* ============ Responsive ============ */
+
+
+
+@media (max-width: 860px) {
+
+  .hero-card {
+
+    grid-template-columns: 1fr;
+
+    text-align: center;
+
+    padding: 30px 22px;
+
+  }
+
+
+
+  .hero-right>p {
+
+    margin-inline: auto;
+
+  }
+
+
+
+  .buttons {
+
+    justify-content: center;
+
+    display: flex;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+  }
+
+
+
+  .navbar {
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    border-radius: 32px;
+
+  }
+
+
+
+  .navbar ul {
+
+    gap: 16px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+  }
+
+
+
+  .section {
+
+    padding: 70px 16px 20px;
+
+  }
+
+}
+
+/* ============ Modern claymorphism refinements ============ */
+button, input, textarea, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(109, 93, 252, 0.42);
+  outline-offset: 3px;
+}
+
+.btn:active,
+.social a:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.glass-card,
+.skill-card,
+.project-card,
+.about-card,
+.contact-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (max-width: 520px) {
+  .section-title { font-size: 1.8rem; }
+  .hero-right h1 { font-size: 2.1rem; }
+  .image-box { width: 210px; height: 210px; }
+  .about-card, .contact-card { padding: 24px; }
+  .navbar { margin: 10px 12px 0; padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   AESTHETIC CLAYMORPHISM — soft, sculpted, tactile surfaces
+   Override layer: keeps the existing HTML class names intact.
+   ========================================================= */
+:root {
+  --bg-1: #f8efff;
+  --bg-2: #edf5ff;
+  --bg-3: #fff0e8;
+  --clay-bg: #f7f2ff;
+  --clay-bg-soft: #f0e9fb;
+  --clay-border: rgba(255, 255, 255, 0.9);
+  --clay-radius: 30px;
+  --text: #352a4a;
+  --text-dim: #786d8c;
+  --accent: #9a70e8;
+  --accent-2: #7852c9;
+  --accent-gradient: linear-gradient(135deg, #b89af7 0%, #9f8bea 48%, #91cde8 100%);
+  --clay-shadow:
+    12px 14px 28px rgba(119, 91, 158, 0.16),
+    -10px -10px 24px rgba(255, 255, 255, 0.96),
+    inset 3px 3px 7px rgba(255, 255, 255, 0.95),
+    inset -4px -5px 9px rgba(173, 145, 211, 0.12);
+  --clay-shadow-hover:
+    16px 18px 32px rgba(119, 91, 158, 0.22),
+    -12px -12px 26px rgba(255, 255, 255, 0.98),
+    inset 3px 3px 8px rgba(255, 255, 255, 0.98),
+    inset -4px -5px 10px rgba(173, 145, 211, 0.14);
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(220, 198, 255, .8) 0, transparent 32%),
+    radial-gradient(ellipse at 88% 16%, rgba(191, 229, 255, .8) 0, transparent 30%),
+    radial-gradient(ellipse at 50% 95%, rgba(255, 218, 221, .55) 0, transparent 35%),
+    linear-gradient(135deg, #f8efff 0%, #eef5ff 52%, #fff4ee 100%);
+  background-attachment: fixed;
+  letter-spacing: .01em;
+}
+
+/* The tactile look comes from layered light and dark inset shadows. */
+.glass-card,
+.skill-card,
+.project-card,
+.about-card,
+.contact-card,
+.hero-edu {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, .92);
+  border-radius: var(--clay-radius);
+  background: linear-gradient(145deg, #fbf8ff 0%, #f2ebfc 100%);
+  box-shadow: var(--clay-shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: transform .28s ease, box-shadow .28s ease, background .28s ease;
+}
+
+.glass-card:hover,
+.skill-card:hover,
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--clay-shadow-hover);
+}
+
+/* Soft, sculpted nav capsule */
+.navbar {
+  background: linear-gradient(145deg, #fbf8ff, #f0e9fb);
+  border: 1px solid rgba(255, 255, 255, .95);
+  box-shadow:
+    9px 10px 22px rgba(119, 91, 158, .15),
+    -8px -8px 20px rgba(255, 255, 255, .95),
+    inset 2px 2px 5px rgba(255, 255, 255, .95),
+    inset -2px -3px 6px rgba(173, 145, 211, .10);
+}
+
+.navbar .logo {
+  background-image: linear-gradient(135deg, #986cdb, #6f9fd4);
+}
+
+.navbar a {
+  position: relative;
+  padding: 7px 2px;
+  color: #756584;
+  transition: color .2s ease;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 1px;
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #b89af7, #91cde8);
+  transition: right .22s ease;
+}
+
+.navbar a:hover { color: #7852c9; text-shadow: none; }
+.navbar a:hover::after { right: 0; }
+
+.section-title {
+  letter-spacing: -.035em;
+  text-shadow: 0 3px 0 rgba(255,255,255,.75);
+  background-image: linear-gradient(135deg, #8f69d2 10%, #8e8be0 55%, #6aaecb 100%);
+}
+
+.hero-card {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(255,255,255,.95), transparent 28%),
+    linear-gradient(145deg, #fcf9ff 0%, #f1e9fc 58%, #edf5ff 100%);
+  box-shadow:
+    16px 18px 36px rgba(119, 91, 158, .17),
+    -12px -12px 28px rgba(255, 255, 255, .98),
+    inset 4px 4px 10px rgba(255,255,255,.95),
+    inset -5px -6px 12px rgba(173,145,211,.12);
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -70px;
+  top: -80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(202,181,255,.45), rgba(174,224,246,.35));
+  box-shadow: inset 5px 5px 12px rgba(255,255,255,.8), 8px 10px 22px rgba(126,103,173,.08);
+  pointer-events: none;
+}
+
+.hero-right h1 {
+  letter-spacing: -.045em;
+  color: #352a4a;
+}
+
+.hero-right h3 { color: #8b7c9f; }
+.hero-right > p { line-height: 1.85; }
+
+.image-box {
+  border: 7px solid #f8f3ff;
+  background: #f1e9fb;
+  box-shadow:
+    10px 12px 24px rgba(119, 91, 158, .2),
+    -8px -8px 20px rgba(255, 255, 255, .98),
+    inset 3px 3px 6px rgba(255,255,255,.9);
+}
+
+.image-box img { border-radius: 50%; }
+
+.hero-edu {
+  background: linear-gradient(145deg, #fffaff, #efe6fb);
+  box-shadow:
+    6px 7px 15px rgba(119, 91, 158, .12),
+    -6px -6px 14px rgba(255, 255, 255, .96),
+    inset 2px 2px 4px rgba(255,255,255,.95),
+    inset -2px -2px 5px rgba(173,145,211,.10);
+}
+
+.auto_type {
+  background-image: linear-gradient(120deg, #9a70e8, #73b9d4);
+}
+
+.btn {
+  border: 1px solid rgba(255,255,255,.78);
+  letter-spacing: .015em;
+  box-shadow: 6px 7px 14px rgba(119,91,158,.13), -5px -5px 12px rgba(255,255,255,.9);
+}
+
+.btn.primary {
+  background: linear-gradient(145deg, #c0a6fa 0%, #a38be9 48%, #8eafe6 100%);
+  box-shadow:
+    7px 9px 16px rgba(128, 93, 190, .25),
+    -4px -4px 10px rgba(255,255,255,.8),
+    inset 3px 3px 6px rgba(255,255,255,.48),
+    inset -4px -5px 8px rgba(102,73,158,.16);
+}
+
+.btn.primary:hover {
+  transform: translateY(-3px) scale(1.015);
+  box-shadow:
+    10px 12px 20px rgba(128,93,190,.29),
+    -5px -5px 12px rgba(255,255,255,.85),
+    inset 3px 3px 7px rgba(255,255,255,.52),
+    inset -4px -5px 8px rgba(102,73,158,.14);
+}
+
+.btn.outline {
+  background: linear-gradient(145deg, #fbf8ff, #eee7fa);
+  border-color: rgba(255,255,255,.96);
+  box-shadow: var(--clay-shadow);
+}
+
+.btn.outline:hover { background: linear-gradient(145deg, #fffaff, #e9e0fb); }
+
+.social a {
+  background: linear-gradient(145deg, #fbf8ff, #eee7fa);
+  border: 1px solid rgba(255,255,255,.95);
+  box-shadow: 7px 8px 15px rgba(119,91,158,.14), -6px -6px 14px rgba(255,255,255,.96), inset 2px 2px 5px rgba(255,255,255,.9), inset -2px -3px 5px rgba(173,145,211,.1);
+}
+
+.social a:hover {
+  background: linear-gradient(145deg, #bda0f5, #8ebfe2);
+  box-shadow: 8px 10px 18px rgba(128,93,190,.22), inset 2px 2px 5px rgba(255,255,255,.45), inset -3px -4px 7px rgba(102,73,158,.14);
+}
+
+.skill-card,
+.project-card {
+  overflow: hidden;
+}
+
+.skill-card h3,
+.project-card h3 { color: #443455; letter-spacing: -.02em; }
+
+.skill-bar {
+  height: 13px;
+  background: #e8def7;
+  box-shadow: inset 4px 4px 7px rgba(129,95,168,.16), inset -2px -2px 4px rgba(255,255,255,.9);
+}
+
+.skill-fill {
+  background: linear-gradient(90deg, #b99bf4, #9b8be6 55%, #8dc9e2);
+  box-shadow: 2px 3px 7px rgba(128,93,190,.2), inset 2px 2px 4px rgba(255,255,255,.52), inset -2px -2px 4px rgba(102,73,158,.12);
+}
+
+.tag {
+  color: #7754ae;
+  background: linear-gradient(145deg, #fbf7ff, #e9defa);
+  border: 1px solid rgba(255,255,255,.95);
+  box-shadow: 4px 5px 9px rgba(119,91,158,.1), -3px -3px 8px rgba(255,255,255,.95), inset 2px 2px 4px rgba(255,255,255,.9), inset -2px -2px 4px rgba(173,145,211,.1);
+}
+
+.contact-card input,
+.contact-card textarea {
+  background: linear-gradient(145deg, #eee6f8, #f7f2ff);
+  border: 1px solid rgba(255,255,255,.95);
+  border-radius: 18px;
+  box-shadow: inset 5px 5px 10px rgba(133,101,168,.13), inset -4px -4px 9px rgba(255,255,255,.96);
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  border-color: rgba(154,112,232,.6);
+  box-shadow: inset 4px 4px 8px rgba(133,101,168,.12), inset -3px -3px 7px rgba(255,255,255,.96), 0 0 0 4px rgba(184,154,247,.18);
+}
+
+.about-card { line-height: 1.9; }
+.footer { color: #887a9a; }
+
+@media (max-width: 860px) {
+  .navbar { background: linear-gradient(145deg, #fbf8ff, #f0e9fb); }
+  .hero-card { gap: 28px; }
+}
+
+@media (max-width: 520px) {
+  .navbar { border-radius: 26px; }
+  .hero-card { padding: 28px 20px; }
+  .image-box { width: 190px; height: 190px; }
+  .section-title { margin-bottom: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none; }
+}
+
+/* =========================================================
+   TACTILE CLAY CONTROLS — apply consistently across the site
+   Rounded pill controls, soft raised depth, and a pressed state
+   ========================================================= */
+:root {
+  --tactile-lilac: #c6aaf7;
+  --tactile-blue: #a9d9ee;
+  --tactile-ink: #514365;
+  --tactile-shadow: 8px 9px 18px rgba(119, 91, 158, .19),
+                   -7px -7px 16px rgba(255, 255, 255, .96),
+                   inset 2px 2px 4px rgba(255, 255, 255, .76),
+                   inset -2px -3px 5px rgba(133, 101, 168, .10);
+  --tactile-pressed: inset 5px 5px 9px rgba(119, 91, 158, .19),
+                     inset -4px -4px 8px rgba(255, 255, 255, .90);
+}
+
+/* Main buttons and button-like links */
+button,
+.btn,
+.button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.hero-card a,
+.hero-buttons a,
+.navbar .btn,
+.contact-card button,
+form button {
+  min-height: 46px;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, .94);
+  border-radius: 999px;
+  color: var(--tactile-ink);
+  background: linear-gradient(145deg, #fcf9ff 0%, #e9defb 52%, #dceafa 100%);
+  box-shadow: var(--tactile-shadow);
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translateY(0);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, filter .18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover,
+.btn:hover,
+.button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.hero-card a:hover,
+.hero-buttons a:hover,
+.navbar .btn:hover,
+.contact-card button:hover,
+form button:hover {
+  background: linear-gradient(145deg, #e9dcff 0%, #cdb8fa 52%, #b9e1f2 100%);
+  box-shadow: 10px 12px 22px rgba(119, 91, 158, .23),
+              -6px -6px 15px rgba(255, 255, 255, .98),
+              inset 2px 2px 5px rgba(255, 255, 255, .62),
+              inset -3px -3px 6px rgba(112, 83, 158, .13);
+  transform: translateY(-2px);
+}
+
+button:active,
+.btn:active,
+.button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+.hero-card a:active,
+.hero-buttons a:active,
+.navbar .btn:active,
+.contact-card button:active,
+form button:active {
+  transform: translateY(1px) scale(.985);
+  box-shadow: var(--tactile-pressed);
+  filter: saturate(.96);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(155, 124, 226, .72);
+  outline-offset: 4px;
+}
+
+button:disabled,
+.btn:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Navigation links feel like small soft clay chips */
+.navbar a:not(.btn),
+nav a:not(.btn) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 15px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.navbar a:not(.btn):hover,
+nav a:not(.btn):hover {
+  background: linear-gradient(145deg, #fdfaff, #e9def9);
+  box-shadow: 5px 6px 12px rgba(119, 91, 158, .13),
+              -4px -4px 10px rgba(255, 255, 255, .96),
+              inset 1px 1px 3px rgba(255, 255, 255, .85);
+  transform: translateY(-1px);
+}
+
+.navbar a:not(.btn):active,
+nav a:not(.btn):active {
+  box-shadow: var(--tactile-pressed);
+  transform: translateY(1px);
+}
+
+/* Round tactile icon/social controls */
+.social a,
+.social-links a,
+.icon-button,
+button.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  min-height: 46px;
+  padding: 10px;
+  border-radius: 999px;
+  box-shadow: var(--tactile-shadow);
+}
+
+/* Form controls have a soft inset clay well, with rounded geometry */
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]),
+textarea,
+select {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, .94);
+  background: linear-gradient(145deg, #eee6f8, #faf7ff);
+  box-shadow: inset 4px 4px 8px rgba(133, 101, 168, .12),
+              inset -4px -4px 8px rgba(255, 255, 255, .94);
+  transition: box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #9b83df;
+  cursor: pointer;
+}
+
+/* Clickable cards and chips receive tactile feedback without forcing a button shape */
+.project-card a,
+.skill-card a,
+.glass-card a,
+.tag,
+.chip,
+.filter-button {
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.project-card a:hover,
+.skill-card a:hover,
+.glass-card a:hover,
+.tag:hover,
+.chip:hover,
+.filter-button:hover {
+  transform: translateY(-2px);
+}
+
+.project-card a:active,
+.skill-card a:active,
+.glass-card a:active,
+.tag:active,
+.chip:active,
+.filter-button:active {
+  transform: translateY(1px) scale(.985);
+  box-shadow: var(--tactile-pressed);
+}
+
+@media (max-width: 520px) {
+  button,
+  .btn,
+  .button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  .hero-card a,
+  .hero-buttons a,
+  .contact-card button,
+  form button {
+    min-height: 44px;
+    padding: 11px 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button, .btn, .button, a, input, textarea, select,
+  .project-card, .skill-card, .glass-card, .tag, .chip {
+    transition: none !important;
+  }
+}
+
+/* Light-dark neutral background with soft slate depth */
+body {
+  background:
+    radial-gradient(circle at 12% 8%, #c5c9ce 0, transparent 32%),
+    radial-gradient(circle at 88% 24%, #e0e3e6 0, transparent 30%),
+    linear-gradient(135deg, #e7e8eb 0%, #dfe5e9 55%, #eee7eb 100%);
+  background-attachment: fixed;
+}
+
+
+/* =========================================================
+   DARK CLAYMORPHISM — final override layer
+   Keeps the soft sculpted clay shadows, but on a dark
+   background with dark clay surfaces and light text.
+   ========================================================= */
+:root {
+  --bg-1: #17131f;
+  --bg-2: #131a24;
+  --bg-3: #1e1620;
+  --clay-bg: #241e30;
+  --clay-bg-soft: #1d1826;
+  --clay-border: rgba(255, 255, 255, 0.08);
+  --text: #efeaff;
+  --text-dim: rgba(224, 216, 244, 0.66);
+  --accent: #a78bfa;
+  --accent-2: #c4b5fd;
+  --accent-gradient: linear-gradient(135deg, #a78bfa 0%, #8b7cf0 48%, #67c8e8 100%);
+
+  /* Clay shadow, dark variant: outer black drop + inset dark depth + inset light sheen */
+  --clay-shadow:
+    12px 14px 30px rgba(0, 0, 0, 0.55),
+    -8px -8px 22px rgba(255, 255, 255, 0.03),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.07),
+    inset -5px -6px 12px rgba(0, 0, 0, 0.45);
+  --clay-shadow-hover:
+    16px 18px 38px rgba(0, 0, 0, 0.62),
+    -8px -8px 22px rgba(255, 255, 255, 0.04),
+    inset 3px 3px 7px rgba(255, 255, 255, 0.09),
+    inset -5px -6px 13px rgba(0, 0, 0, 0.5);
+
+  --tactile-lilac: #a78bfa;
+  --tactile-blue: #67c8e8;
+  --tactile-ink: #efeaff;
+  --tactile-shadow: var(--clay-shadow);
+  --tactile-pressed: inset 5px 5px 10px rgba(0, 0, 0, 0.55),
+                     inset -4px -4px 9px rgba(255, 255, 255, 0.06);
+}
+
+/* Dark page background */
+body {
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(124, 92, 208, 0.22) 0, transparent 34%),
+    radial-gradient(ellipse at 88% 16%, rgba(56, 130, 184, 0.18) 0, transparent 32%),
+    radial-gradient(ellipse at 50% 95%, rgba(196, 92, 150, 0.14) 0, transparent 36%),
+    linear-gradient(135deg, #17131f 0%, #131a24 52%, #1e1620 100%);
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+/* Dim the pastel blobs */
+.blob-1 { background: #4c3a7a; }
+.blob-2 { background: #23485f; }
+.blob-3 { background: #5f2b4a; }
+
+/* Dark clay cards */
+.glass-card,
+.skill-card,
+.project-card,
+.about-card,
+.contact-card,
+.hero-edu {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, #282234 0%, #1f1a29 100%);
+  box-shadow: var(--clay-shadow);
+}
+
+.glass-card:hover,
+.skill-card:hover,
+.project-card:hover {
+  box-shadow: var(--clay-shadow-hover);
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(145deg, #292237, #1e1929);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    9px 10px 24px rgba(0, 0, 0, 0.5),
+    -6px -6px 18px rgba(255, 255, 255, 0.03),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.06),
+    inset -3px -4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .logo {
+  background-image: linear-gradient(135deg, #b79af7, #6fc4dd);
+}
+
+.navbar a { color: var(--text-dim); }
+.navbar a:hover { color: var(--accent-2); }
+
+.navbar a::after {
+  background: linear-gradient(90deg, #a78bfa, #67c8e8);
+}
+
+/* Section titles */
+.section-title {
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.55);
+  background-image: linear-gradient(135deg, #c4a9fa 10%, #a49ae8 55%, #74bcd4 100%);
+}
+
+/* Hero */
+.hero-card {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(255, 255, 255, 0.05), transparent 30%),
+    linear-gradient(145deg, #2a2438 0%, #211b2c 58%, #1c2130 100%);
+  box-shadow:
+    16px 18px 38px rgba(0, 0, 0, 0.55),
+    -10px -10px 26px rgba(255, 255, 255, 0.03),
+    inset 3px 3px 9px rgba(255, 255, 255, 0.06),
+    inset -6px -7px 14px rgba(0, 0, 0, 0.45);
+}
+
+.hero-card::before {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(103, 200, 232, 0.18));
+  box-shadow: inset 5px 5px 12px rgba(255, 255, 255, 0.06), 8px 10px 22px rgba(0, 0, 0, 0.3);
+}
+
+.hero-right h1 { color: var(--text); }
+.hero-right h3 { color: var(--text-dim); }
+
+.image-box {
+  border: 7px solid #2a2438;
+  background: #1f1a29;
+  box-shadow:
+    10px 12px 26px rgba(0, 0, 0, 0.55),
+    -8px -8px 20px rgba(255, 255, 255, 0.03),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.06);
+}
+
+.hero-edu {
+  background: linear-gradient(145deg, #29223a, #1e1828);
+  box-shadow:
+    6px 7px 16px rgba(0, 0, 0, 0.45),
+    -5px -5px 13px rgba(255, 255, 255, 0.03),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.06),
+    inset -2px -3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.auto_type {
+  background-image: linear-gradient(120deg, #b79af7, #67c8e8);
+}
+
+/* Buttons */
+.btn.primary {
+  background: linear-gradient(145deg, #8f6ff2 0%, #7a68d8 48%, #5fa8cf 100%);
+  color: #fff;
+  box-shadow:
+    7px 9px 18px rgba(0, 0, 0, 0.5),
+    -4px -4px 10px rgba(255, 255, 255, 0.04),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.28),
+    inset -4px -5px 9px rgba(0, 0, 0, 0.4);
+}
+
+.btn.primary:hover {
+  box-shadow:
+    10px 12px 22px rgba(0, 0, 0, 0.55),
+    -4px -4px 12px rgba(255, 255, 255, 0.05),
+    inset 3px 3px 7px rgba(255, 255, 255, 0.32),
+    inset -4px -5px 9px rgba(0, 0, 0, 0.42);
+}
+
+.btn.outline {
+  background: linear-gradient(145deg, #292237, #1e1928);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  box-shadow: var(--clay-shadow);
+}
+
+.btn.outline:hover {
+  background: linear-gradient(145deg, #312a40, #241d30);
+}
+
+/* Generic tactile buttons (override the light gradients) */
+button,
+.btn,
+.button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.hero-card a,
+.hero-buttons a,
+.navbar .btn,
+.contact-card button,
+form button {
+  background: linear-gradient(145deg, #2b2439 0%, #221c2e 52%, #1d2231 100%);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+button:hover,
+.btn:hover,
+.button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.hero-card a:hover,
+.hero-buttons a:hover,
+.navbar .btn:hover,
+.contact-card button:hover,
+form button:hover {
+  background: linear-gradient(145deg, #362d49 0%, #2b233a 52%, #242b3d 100%);
+}
+
+/* Nav chips */
+.navbar a:not(.btn):hover,
+nav a:not(.btn):hover {
+  background: linear-gradient(145deg, #302841, #241d30);
+  box-shadow: 5px 6px 13px rgba(0, 0, 0, 0.45),
+              -4px -4px 10px rgba(255, 255, 255, 0.03),
+              inset 1px 1px 3px rgba(255, 255, 255, 0.07);
+}
+
+/* Social icons */
+.social a {
+  background: linear-gradient(145deg, #292237, #1e1928);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text);
+}
+
+.social a:hover {
+  background: linear-gradient(145deg, #8f6ff2, #5fa8cf);
+  color: #fff;
+}
+
+/* Skill bars */
+.skill-card h3,
+.project-card h3 { color: var(--text); }
+
+.skill-bar {
+  background: #171220;
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.55), inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+}
+
+.skill-fill {
+  background: linear-gradient(90deg, #a78bfa, #8b7cf0 55%, #67c8e8);
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4), inset 2px 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Tags */
+.tag {
+  color: #cdbcf7;
+  background: linear-gradient(145deg, #2c2539, #221c2c);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.4), -3px -3px 8px rgba(255, 255, 255, 0.03), inset 2px 2px 4px rgba(255, 255, 255, 0.06), inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Form inputs: dark pressed-in clay wells */
+.contact-card input,
+.contact-card textarea {
+  color: var(--text);
+  background: linear-gradient(145deg, #181320, #241d30);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset -4px -4px 9px rgba(255, 255, 255, 0.05);
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  border-color: rgba(167, 139, 250, 0.6);
+  box-shadow: inset 4px 4px 9px rgba(0, 0, 0, 0.5), inset -3px -3px 7px rgba(255, 255, 255, 0.05), 0 0 0 4px rgba(167, 139, 250, 0.18);
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+  color: rgba(224, 216, 244, 0.35);
+}
+
+/* Status colors readable on dark */
+.status.ok { color: #6ee7b7; }
+.status.err { color: #fda4af; }
+.error { color: #fda4af; }
+
+/* Inputs general */
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]),
+textarea,
+select {
+  color: var(--text);
+  background: linear-gradient(145deg, #181320, #241d30);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Footer & misc */
+.footer { color: var(--text-dim); }
+
+@media (max-width: 860px) {
+  .navbar { background: linear-gradient(145deg, #292237, #1e1929); }
+}
+
+
+/* =========================================================
+   RAIN — steady rainfall inside .bg-animation
+   40 drops generated in React; each uses the --i index for
+   a unique horizontal position, delay, duration and depth.
+   ========================================================= */
+
+.rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.drop {
+  position: absolute;
+  top: -12%;
+  width: 1.5px;
+  height: 60px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom,
+      rgba(173, 200, 255, 0) 0%,
+      rgba(173, 200, 255, 0.35) 35%,
+      rgba(220, 235, 255, 0.75) 90%,
+      rgba(255, 255, 255, 0.9) 100%);
+  animation: rainfall 1.4s linear infinite;
+  opacity: 0;
+}
+
+/* N drops spread evenly; per-drop variation from the index */
+.drop:nth-child(3n) {
+  height: 90px;
+  width: 2px;
+  animation-duration: 1s;
+}
+
+.drop:nth-child(4n) {
+  height: 45px;
+  animation-duration: 1.7s;
+  opacity: 0.6;
+}
+
+@keyframes rainfall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12vh, 0);
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-4vw, 112vh, 0);
+  }
+}
+
+/* Per-drop variation: horizontal spread, delay and depth
+   are all derived from the --i index set inline in React. */
+.drop {
+  left: calc((var(--i) - 1) * 2.5%);
+  animation-delay: calc(var(--i) * -0.11s);
+}
+
+.drop:nth-child(3n) {
+  left: calc((var(--i) - 0.5) * 2.5% + 1%);
+}
+
+.drop:nth-child(4n) {
+  left: calc((var(--i) - 1) * 2.5% - 1%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drop { animation: none; opacity: 0; }
+}
