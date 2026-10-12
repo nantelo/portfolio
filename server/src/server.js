@@ -12,7 +12,9 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    // Comma-separated list in production, e.g.
+    // CLIENT_URL=https://your-site.netlify.app,http://localhost:5173
+    origin: (process.env.CLIENT_URL || "http://localhost:5173").split(","),
   })
 );
 app.use(express.json());
